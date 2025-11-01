@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="MeWin - Quản lý sân thể thao">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="MeWin Quản lý">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <title>MeWin - Quản lý sân thể thao</title>
+  <link rel="manifest" href="manifest.json">
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="expires" content="0" />
+  <meta http-equiv="pragma" content="no-cache" />
+
+  <script src="flutter.js?version=14" defer></script>
+
+
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+  <!-- <meta name="google-signin-client_id"
+    content="62541679331-rg60rj2mi6cdgar9f4bad1fiorh7n2vk.apps.googleusercontent.com"> -->
+
+  <style id="splash-screen-style">
+    .flutter-loader {
+      display: none !important;
+    }
+
+    html {
+      height: 100%
+    }
+
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: #ffffff;
+      overflow: hidden;
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    /* Animated background particles */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(102, 126, 234, 0.3);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .particle:nth-child(1) {
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .particle:nth-child(2) {
+      left: 20%;
+      animation-delay: 1s;
+    }
+
+    .particle:nth-child(3) {
+      left: 30%;
+      animation-delay: 2s;
+    }
+
+    .particle:nth-child(4) {
+      left: 40%;
+      animation-delay: 3s;
+    }
+
+    .particle:nth-child(5) {
+      left: 50%;
+      animation-delay: 4s;
+    }
+
+    .particle:nth-child(6) {
+      left: 60%;
+      animation-delay: 5s;
+    }
+
+    .particle:nth-child(7) {
+      left: 70%;
+      animation-delay: 0.5s;
+    }
+
+    .particle:nth-child(8) {
+      left: 80%;
+      animation-delay: 1.5s;
+    }
+
+    .particle:nth-child(9) {
+      left: 90%;
+      animation-delay: 2.5s;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+        transform: translateY(90vh) scale(1);
+      }
+
+      90% {
+        opacity: 1;
+        transform: translateY(10vh) scale(1);
+      }
+    }
+
+    .center {
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #ffffff;
+      }
+    }
+
+    /* Main loading container */
+    #load {
+      position: absolute;
+      width: 100%;
+      height: 80px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      overflow: visible;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      cursor: default;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      z-index: 10;
+    }
+
+    #load div {
+      position: relative;
+      width: auto;
+      height: 80px;
+      opacity: 0;
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-weight: 800;
+      font-size: 56px;
+      background: linear-gradient(45deg, #0B99FF, #0B99FF, #0B99FF, #0B99FF, #0B99FF);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: translateY(50px) rotateX(90deg) scale(0.5);
+      animation: letterReveal 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+        gradientShift 3s ease-in-out infinite;
+      text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+    }
+
+    /* Stagger animation delays for each letter */
+    #load div:nth-child(1) {
+      animation-delay: 0.1s, 0s;
+    }
+
+    #load div:nth-child(2) {
+      animation-delay: 0.15s, 0.2s;
+    }
+
+    #load div:nth-child(3) {
+      animation-delay: 0.2s, 0.4s;
+    }
+
+    #load div:nth-child(4) {
+      animation-delay: 0.25s, 0.6s;
+    }
+
+    #load div:nth-child(5) {
+      animation-delay: 0.3s, 0.8s;
+    }
+
+    #load div:nth-child(6) {
+      animation-delay: 0.35s, 1s;
+    }
+
+    #load div:nth-child(7) {
+      animation-delay: 0.4s, 1.2s;
+    }
+
+    #load div:nth-child(8) {
+      animation-delay: 0.45s, 1.4s;
+    }
+
+    #load div:nth-child(9) {
+      animation-delay: 0.5s, 1.6s;
+    }
+
+    #load div:nth-child(10) {
+      animation-delay: 0.55s, 1.8s;
+    }
+
+    #load div:nth-child(11) {
+      animation-delay: 0.6s, 2s;
+    }
+
+    #load div:nth-child(12) {
+      animation-delay: 0.65s, 2.2s;
+    }
+
+    @keyframes letterReveal {
+      0% {
+        transform: translateY(50px) rotateX(90deg) scale(0.5);
+        opacity: 0;
+      }
+
+      50% {
+        transform: translateY(-10px) rotateX(0deg) scale(1.1);
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: translateY(0) rotateX(0deg) scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* Loading dots animation */
+    .loading-dots {
+      position: absolute;
+      top: 65%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeInDots 0.8s ease-out 1.8s forwards;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #0B99FF, #0B99FF);
+      animation: dotPulse 1.5s ease-in-out infinite;
+    }
+
+    .dot:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    .dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .dot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes dotPulse {
+
+      0%,
+      100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+      }
+
+      50% {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInDots {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    /* Brand text with enhanced styling */
+    #splash-branding {
+      position: absolute;
+      left: 50%;
+      top: 75%;
+      transform: translateX(-50%);
+      color: #0B99FF;
+      font-size: 16px;
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-weight: 500;
+      letter-spacing: 1px;
+      overflow: visible;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      cursor: default;
+      opacity: 0;
+      transform: translateX(-50%) translateY(30px);
+      animation: brandingSlideUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.8s forwards;
+      text-shadow: 0 2px 10px rgba(102, 126, 234, 0.2);
+      backdrop-filter: blur(10px);
+      padding: 12px 24px;
+      border-radius: 25px;
+      background: rgba(248, 248, 248, 0.1);
+      border: 1px solid rgba(102, 126, 234, 0.2);
+    }
+
+    @keyframes brandingSlideUp {
+      0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(30px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    /* Progress bar */
+    .progress-container {
+      position: absolute;
+      bottom: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 4px;
+      background: rgba(102, 126, 234, 0.2);
+      border-radius: 2px;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeInProgress 0.8s ease-out 2.8s forwards;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1);
+      border-radius: 2px;
+      width: 0%;
+      animation: progressFill 2s ease-out 3s forwards;
+      box-shadow: 0 0 20px rgba(77, 208, 196, 0.5);
+    }
+
+    @keyframes fadeInProgress {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.8);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+      }
+    }
+
+    @keyframes progressFill {
+      from {
+        width: 0%;
+      }
+
+      to {
+        width: 100%;
+      }
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      #load {
+        width: 90%;
+        gap: 8px;
+      }
+
+      #load div {
+        font-size: 40px;
+        height: 60px;
+      }
+
+      #splash-branding {
+        font-size: 16px;
+        top: 70%;
+        padding: 10px 20px;
+      }
+
+      .progress-container {
+        width: 250px;
+        bottom: 20%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #load div {
+        font-size: 32px;
+        height: 48px;
+        gap: 4px;
+      }
+
+      #splash-branding {
+        font-size: 14px;
+        top: 75%;
+        padding: 8px 16px;
+      }
+
+      .progress-container {
+        width: 200px;
+        bottom: 25%;
+      }
+    }
+
+    /* Webkit specific optimizations */
+    @-webkit-keyframes letterReveal {
+      0% {
+        -webkit-transform: translateY(50px) rotateX(90deg) scale(0.5);
+        transform: translateY(50px) rotateX(90deg) scale(0.5);
+        opacity: 0;
+      }
+
+      50% {
+        -webkit-transform: translateY(-10px) rotateX(0deg) scale(1.1);
+        transform: translateY(-10px) rotateX(0deg) scale(1.1);
+        opacity: 0.8;
+      }
+
+      100% {
+        -webkit-transform: translateY(0) rotateX(0deg) scale(1);
+        transform: translateY(0) rotateX(0deg) scale(1);
+        opacity: 1;
+      }
+    }
+
+    @-webkit-keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+  </style>
+
+  <!-- Flutter inapp webview support -->
+  <script type="application/javascript" src="/assets/packages/flutter_inappwebview_web/assets/web/web_support.js"
+    defer></script>
+
+  <!-- PDF.js library for PDF rendering syncfusion_flutter_pdfviewer -->
+  <script type="module" async>
+    import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.9.155/pdf.min.mjs';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.9.155/pdf.worker.min.mjs";
+  </script>
+
+  <script>
+    // Helper: chờ tất cả ảnh, font, CSS trong document load xong
+    function waitForAssetsToLoad(doc) {
+      return new Promise((resolve) => {
+        const images = Array.from(doc.images || []);
+        if (images.length === 0) {
+          resolve();
+          return;
+        }
+
+        let loaded = 0;
+        images.forEach((img) => {
+          if (img.complete) {
+            loaded++;
+            if (loaded === images.length) resolve();
+          } else {
+            img.addEventListener('load', () => {
+              loaded++;
+              if (loaded === images.length) resolve();
+            });
+            img.addEventListener('error', () => {
+              loaded++;
+              if (loaded === images.length) resolve();
+            });
+          }
+        });
+
+        // Nếu quá 5s mà chưa xong, vẫn cho qua
+        setTimeout(resolve, 5000);
+      });
+    }
+
+    // ✅ Hàm in ổn định
+    async function printPageWeb(html) {
+      const width = screen.availWidth;
+      const height = screen.availHeight;
+
+      const printWin = window.open('', '', `left=0,top=0,width=${width},height=${height},toolbar=0,scrollbars=0,status=0`);
+      printWin.document.open();
+      printWin.document.write(html);
+      printWin.document.close();
+
+      printWin.onload = async function () {
+        await waitForAssetsToLoad(printWin.document);
+
+        // Dùng timeout để chắc chắn trình duyệt render xong
+        setTimeout(() => {
+          printWin.focus();
+          printWin.print();
+
+          // Chờ 1.5s sau khi in mới đóng
+          setTimeout(() => printWin.close(), 1500);
+        }, 500);
+      };
+    }
+
+    // ✅ Hàm chụp ảnh ổn định
+    async function captureHtmlAsImage(htmlString) {
+      const width = screen.availWidth;
+      const height = screen.availHeight;
+
+      const win = window.open('', '', `left=0,top=0,width=${width},height=${height}`);
+      win.document.open();
+      win.document.write(htmlString);
+      win.document.close();
+
+      win.onload = async () => {
+        await waitForAssetsToLoad(win.document);
+
+        // Inject html2canvas
+        const script = win.document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
+        script.onload = async () => {
+          try {
+            // Chờ thêm chút để đảm bảo render ổn định
+            setTimeout(async () => {
+              const canvas = await win.html2canvas(win.document.body, {
+                useCORS: true,
+                allowTaint: true,
+                scale: 2, // chất lượng cao hơn
+                logging: false,
+              });
+
+              const link = win.document.createElement('a');
+              link.href = canvas.toDataURL('image/png');
+              link.download = 'screenshot.png';
+              link.click();
+
+              // Chờ 1s cho download event hoàn tất
+              setTimeout(() => win.close(), 1000);
+            }, 300);
+          } catch (err) {
+            console.error('Lỗi khi chụp ảnh:', err);
+            win.close();
+          }
+        };
+
+        win.document.body.appendChild(script);
+      };
+    }
+  </script>
+  <!-- <script>
+    function captureHtmlAsImage(htmlString) {
+      const width = screen.availWidth;
+      const height = screen.availHeight;
+
+      const win = window.open('', '', `left=0,top=0,width=${width},height=${height}`);
+
+      win.document.open();
+      win.document.write(htmlString);
+      win.document.close();
+
+      win.onload = () => {
+        // 1. Inject html2canvas
+        const script = win.document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
+
+        script.onload = () => {
+          // 2. Chờ tất cả ảnh, fonts, css load xong
+          waitForAssetsToLoad(win.document).then(() => {
+            // 3. Dùng html2canvas sau khi assets đã tải xong
+            win.html2canvas(win.document.body, {
+              useCORS: true,
+              allowTaint: true,
+            }).then(canvas => {
+              const link = win.document.createElement('a');
+              link.href = canvas.toDataURL('image/png');
+              link.download = 'screenshot.png';
+              link.click();
+              win.close();
+            });
+          });
+        };
+
+        win.document.body.appendChild(script);
+      };
+    }
+
+    function waitForAssetsToLoad(doc) {
+      return new Promise(resolve => {
+        const images = Array.from(doc.images || []);
+        const promises = [];
+
+        for (const img of images) {
+          if (!img.complete || img.naturalWidth === 0) {
+            promises.push(new Promise(res => {
+              img.onload = img.onerror = res;
+            }));
+          }
+        }
+
+        // Fonts
+        if (doc.fonts && doc.fonts.ready) {
+          promises.push(doc.fonts.ready);
+        }
+
+        // Stylesheets
+        const links = Array.from(doc.querySelectorAll('link[rel="stylesheet"]'));
+        for (const link of links) {
+          if (!link.sheet) {
+            promises.push(new Promise(res => {
+              link.onload = link.onerror = res;
+            }));
+          }
+        }
+
+        Promise.all(promises).then(resolve);
+      });
+    }
+  </script> -->
+</head>
+
+<body>
+  <script src="flutter_bootstrap.js" async="">
+    window.onload = function () {
+      const url = window.location.href;
+      if (url) {
+        // Chuyển URL cho Flutter
+        window.flutter_inappwebview?.callHandler('handleDeeplink', url);
+      }
+    };
+  </script>
+
+  <!-- Loading Indicator -->
+  <div id="load">
+    <div>M</div>
+    <div>E</div>
+    <div>W</div>
+    <div>I</div>
+    <div>N</div>
+    <div>-</div>
+    <div>Q</div>
+    <div>U</div>
+    <div>Ả</div>
+    <div>N</div>
+    <div>L</div>
+    <div>Ý</div>
+
+  </div>
+  <!-- Animated background particles -->
+  <div class="particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <!-- Loading dots -->
+  <div class="loading-dots">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="progress-container">
+    <div class="progress-bar"></div>
+  </div>
+  <span id="splash-branding">Quản lý sân thể thao</span>
+
+  <!-- This script installs service_worker.js to provide PWA functionality to
+       application. For more information, see:
+       https://developers.google.com/web/fundamentals/primers/service-workers -->
+  <!-- <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("flutter-first-frame", function () {
+        navigator.serviceWorker.register("flutter_service_worker.js");
+      });
+    }
+  </script> -->
+  <!-- <script src="main.dart.js?version=6" type="application/javascript"></script> -->
+  <script>
+    // Hàm xóa splash screen với hiệu ứng fade out mượt mà
+    let splashRemoved = false;
+    function removeSplashScreen() {
+      if (splashRemoved) return;
+      splashRemoved = true;
+      const loadElement = document.getElementById("load");
+      const brandingElement = document.getElementById("splash-branding");
+      const particlesElement = document.querySelector(".particles");
+      const dotsElement = document.querySelector(".loading-dots");
+      const progressElement = document.querySelector(".progress-container");
+
+      // Debug log
+      console.log('Removing splash screen, elements found:', {
+        load: !!loadElement,
+        branding: !!brandingElement,
+        particles: !!particlesElement,
+        dots: !!dotsElement,
+        progress: !!progressElement
+      });
+
+      // Tạo container wrapper để fade out toàn bộ splash screen
+      const splashWrapper = document.createElement('div');
+      splashWrapper.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100 %;
+      height: 100 %;
+      z - index: 9999;
+      pointer - events: none;
+      transition: all 0.8s cubic - bezier(0.25, 0.46, 0.45, 0.94);
+  `;
+
+      // Wrap tất cả elements vào container
+      document.body.appendChild(splashWrapper);
+
+      // Move elements to wrapper (kiểm tra từng element)
+      [loadElement, brandingElement, particlesElement, dotsElement, progressElement].forEach(element => {
+        if (element && element.parentNode) {
+          splashWrapper.appendChild(element);
+        }
+      });
+
+      // Trigger fade out animation
+      requestAnimationFrame(() => {
+        splashWrapper.style.opacity = '0';
+        splashWrapper.style.transform = 'scale(0.95)';
+        splashWrapper.style.filter = 'blur(10px)';
+
+        // Fade background mượt mà
+        document.body.style.transition = 'background 0.8s ease-out';
+        document.body.style.background = 'transparent';
+      });
+
+      // Xóa wrapper sau khi animation hoàn thành
+      setTimeout(() => {
+        if (splashWrapper && splashWrapper.parentNode) {
+          splashWrapper.remove();
+        }
+        // Reset body styles
+        document.body.style.background = '';
+        document.body.style.transition = '';
+        document.body.style.overflow = '';
+      }, 200);
+    }
+
+    // Xóa khi Flutter tải xong
+    window.addEventListener("flutter-first-frame", function () {
+      removeSplashScreen();
+    });
+
+    // Fallback: Xóa sau 4s nếu sự kiện không kích hoạt
+    window.onload = function () {
+      setTimeout(function () {
+        removeSplashScreen();
+      }, 3000);
+    };
+  </script>
+</body>
+
+</html>
