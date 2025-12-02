@@ -7,7 +7,7 @@
     href value below to reflect the base path you are serving from.
 
     The path provided below has to start and end with a slash "/" in order for
-    it to work correctl
+    it to work correctly.
 
     For more details:
     * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
@@ -15,6 +15,7 @@
     This is a placeholder for base href that will be replaced by the value of
     the `--base-href` argument provided to `flutter build`.
   -->
+  <base href="/">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
@@ -36,7 +37,7 @@
   <meta http-equiv="expires" content="0" />
   <meta http-equiv="pragma" content="no-cache" />
 
-  <script src="flutter.js?version=14" defer></script>
+  <script src="flutter.js?version=15" defer></script>
 
 
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
@@ -575,47 +576,59 @@
 
     // ✅ Hàm chụp ảnh ổn định
     async function captureHtmlAsImage(htmlString) {
-      const width = screen.availWidth;
-      const height = screen.availHeight;
+      const width = window.innerWidth;
+      const height = window.innerHeight;
 
-      const win = window.open('', '', `left=0,top=0,width=${width},height=${height}`);
-      win.document.open();
-      win.document.write(htmlString);
-      win.document.close();
+      // Tạo iframe tạm để render HTML (thay vì window.open)
+      const iframe = document.createElement('iframe');
+      iframe.style.position = 'fixed';
+      iframe.style.left = '-9999px';
+      iframe.style.width = width + 'px';
+      iframe.style.height = height + 'px';
+      document.body.appendChild(iframe);
 
-      win.onload = async () => {
-        await waitForAssetsToLoad(win.document);
+      const doc = iframe.contentDocument || iframe.contentWindow.document;
+      doc.open();
+      doc.write(htmlString);
+      doc.close();
 
-        // Inject html2canvas
-        const script = win.document.createElement('script');
+      // Chờ load toàn bộ ảnh, font
+      await waitForAssetsToLoad(doc);
+
+      // Inject html2canvas
+      await new Promise((resolve, reject) => {
+        const script = doc.createElement('script');
         script.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
-        script.onload = async () => {
-          try {
-            // Chờ thêm chút để đảm bảo render ổn định
-            setTimeout(async () => {
-              const canvas = await win.html2canvas(win.document.body, {
-                useCORS: true,
-                allowTaint: true,
-                scale: 2, // chất lượng cao hơn
-                logging: false,
-              });
+        script.onload = resolve;
+        script.onerror = reject;
+        doc.body.appendChild(script);
+      });
 
-              const link = win.document.createElement('a');
-              link.href = canvas.toDataURL('image/png');
-              link.download = 'screenshot.png';
-              link.click();
+      // Chờ thêm 300ms để render ổn định
+      await new Promise(r => setTimeout(r, 300));
 
-              // Chờ 1s cho download event hoàn tất
-              setTimeout(() => win.close(), 1000);
-            }, 300);
-          } catch (err) {
-            console.error('Lỗi khi chụp ảnh:', err);
-            win.close();
-          }
-        };
+      try {
+        const canvas = await iframe.contentWindow.html2canvas(doc.body, {
+          useCORS: true,
+          allowTaint: true,
+          scale: 2,
+          logging: false,
+        });
 
-        win.document.body.appendChild(script);
-      };
+        // Tạo link download trong tab chính
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png');
+        link.download = 'screenshot.png';
+
+        // Trigger download
+        link.click();
+
+      } catch (err) {
+        console.error('Lỗi khi chụp ảnh:', err);
+      } finally {
+        // Dọn iframe
+        document.body.removeChild(iframe);
+      }
     }
   </script>
   <!-- <script>
