@@ -37,7 +37,7 @@
   <meta http-equiv="expires" content="0" />
   <meta http-equiv="pragma" content="no-cache" />
 
-  <script src="flutter.js?version=15" defer></script>
+  <script src="flutter.js?version=14" defer></script>
 
 
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
@@ -576,59 +576,47 @@
 
     // ✅ Hàm chụp ảnh ổn định
     async function captureHtmlAsImage(htmlString) {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
+      const width = screen.availWidth;
+      const height = screen.availHeight;
 
-      // Tạo iframe tạm để render HTML (thay vì window.open)
-      const iframe = document.createElement('iframe');
-      iframe.style.position = 'fixed';
-      iframe.style.left = '-9999px';
-      iframe.style.width = width + 'px';
-      iframe.style.height = height + 'px';
-      document.body.appendChild(iframe);
+      const win = window.open('', '', `left=0,top=0,width=${width},height=${height}`);
+      win.document.open();
+      win.document.write(htmlString);
+      win.document.close();
 
-      const doc = iframe.contentDocument || iframe.contentWindow.document;
-      doc.open();
-      doc.write(htmlString);
-      doc.close();
+      win.onload = async () => {
+        await waitForAssetsToLoad(win.document);
 
-      // Chờ load toàn bộ ảnh, font
-      await waitForAssetsToLoad(doc);
-
-      // Inject html2canvas
-      await new Promise((resolve, reject) => {
-        const script = doc.createElement('script');
+        // Inject html2canvas
+        const script = win.document.createElement('script');
         script.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
-        script.onload = resolve;
-        script.onerror = reject;
-        doc.body.appendChild(script);
-      });
+        script.onload = async () => {
+          try {
+            // Chờ thêm chút để đảm bảo render ổn định
+            setTimeout(async () => {
+              const canvas = await win.html2canvas(win.document.body, {
+                useCORS: true,
+                allowTaint: true,
+                scale: 2, // chất lượng cao hơn
+                logging: false,
+              });
 
-      // Chờ thêm 300ms để render ổn định
-      await new Promise(r => setTimeout(r, 300));
+              const link = win.document.createElement('a');
+              link.href = canvas.toDataURL('image/png');
+              link.download = 'screenshot.png';
+              link.click();
 
-      try {
-        const canvas = await iframe.contentWindow.html2canvas(doc.body, {
-          useCORS: true,
-          allowTaint: true,
-          scale: 2,
-          logging: false,
-        });
+              // Chờ 1s cho download event hoàn tất
+              setTimeout(() => win.close(), 1000);
+            }, 300);
+          } catch (err) {
+            console.error('Lỗi khi chụp ảnh:', err);
+            win.close();
+          }
+        };
 
-        // Tạo link download trong tab chính
-        const link = document.createElement('a');
-        link.href = canvas.toDataURL('image/png');
-        link.download = 'screenshot.png';
-
-        // Trigger download
-        link.click();
-
-      } catch (err) {
-        console.error('Lỗi khi chụp ảnh:', err);
-      } finally {
-        // Dọn iframe
-        document.body.removeChild(iframe);
-      }
+        win.document.body.appendChild(script);
+      };
     }
   </script>
   <!-- <script>
@@ -756,15 +744,15 @@
   <span id="splash-branding">Quản lý sân thể thao</span>
 
   <!-- This script installs service_worker.js to provide PWA functionality to
-       application. For more information, see:
-       https://developers.google.com/web/fundamentals/primers/service-workers -->
+     application. For more information, see:
+     https://developers.google.com/web/fundamentals/primers/service-workers -->
   <!-- <script>
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("flutter-first-frame", function () {
-        navigator.serviceWorker.register("flutter_service_worker.js");
-      });
-    }
-  </script> -->
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("flutter-first-frame", function () {
+      navigator.serviceWorker.register("flutter_service_worker.js");
+    });
+  }
+</script> -->
   <!-- <script src="main.dart.js?version=6" type="application/javascript"></script> -->
   <script>
     // Hàm xóa splash screen với hiệu ứng fade out mượt mà
@@ -790,15 +778,15 @@
       // Tạo container wrapper để fade out toàn bộ splash screen
       const splashWrapper = document.createElement('div');
       splashWrapper.style.cssText = `
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100 %;
-      height: 100 %;
-      z - index: 9999;
-      pointer - events: none;
-      transition: all 0.8s cubic - bezier(0.25, 0.46, 0.45, 0.94);
-  `;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100 %;
+    height: 100 %;
+    z - index: 9999;
+    pointer - events: none;
+    transition: all 0.8s cubic - bezier(0.25, 0.46, 0.45, 0.94);
+`;
 
       // Wrap tất cả elements vào container
       document.body.appendChild(splashWrapper);
