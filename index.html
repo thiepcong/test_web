@@ -37,7 +37,7 @@
   <meta http-equiv="expires" content="0" />
   <meta http-equiv="pragma" content="no-cache" />
 
-  <script src="flutter.js?version=14" defer></script>
+  <script src="flutter.js?version=21" defer></script>
 
 
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
@@ -511,7 +511,7 @@
   <!-- Flutter inapp webview support -->
   <script type="application/javascript" src="/assets/packages/flutter_inappwebview_web/assets/web/web_support.js"
     defer></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <!-- PDF.js library for PDF rendering syncfusion_flutter_pdfviewer -->
   <script type="module" async>
     import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.9.155/pdf.min.mjs';
@@ -576,47 +576,41 @@
 
     // ✅ Hàm chụp ảnh ổn định
     async function captureHtmlAsImage(htmlString) {
-      const width = screen.availWidth;
-      const height = screen.availHeight;
+      const tempElement = document.createElement('div');
+      tempElement.innerHTML = htmlString;
+      tempElement.style.position = 'absolute';
+      tempElement.style.left = '-9999px';
+      tempElement.style.top = '-9999px';
+      tempElement.style.width = 'auto'; // Fit full width để tránh crop
+      tempElement.style.overflow = 'visible'; // Không ẩn overflow
+      tempElement.style.backgroundColor = 'white';
+      document.body.appendChild(tempElement);
 
-      const win = window.open('', '', `left=0,top=0,width=${width},height=${height}`);
-      win.document.open();
-      win.document.write(htmlString);
-      win.document.close();
 
-      win.onload = async () => {
-        await waitForAssetsToLoad(win.document);
+      setTimeout(() => {
+        html2canvas(tempElement, {
+          scale: 1,
+          useCORS: true,
+          logging: true,
+          backgroundColor: "#FFFFFF"
+        }).then(canvas => {
+          document.body.removeChild(tempElement);
+          canvas.toBlob(blob => {
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'hoa-don.png';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(link.href);
+          }, 'image/png');
+        }).catch(error => {
+          console.error('Lỗi capture:', error);
+          document.body.removeChild(tempElement);
+        });
 
-        // Inject html2canvas
-        const script = win.document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
-        script.onload = async () => {
-          try {
-            // Chờ thêm chút để đảm bảo render ổn định
-            setTimeout(async () => {
-              const canvas = await win.html2canvas(win.document.body, {
-                useCORS: true,
-                allowTaint: true,
-                scale: 2, // chất lượng cao hơn
-                logging: false,
-              });
+      }, 100);
 
-              const link = win.document.createElement('a');
-              link.href = canvas.toDataURL('image/png');
-              link.download = 'screenshot.png';
-              link.click();
-
-              // Chờ 1s cho download event hoàn tất
-              setTimeout(() => win.close(), 1000);
-            }, 300);
-          } catch (err) {
-            console.error('Lỗi khi chụp ảnh:', err);
-            win.close();
-          }
-        };
-
-        win.document.body.appendChild(script);
-      };
     }
   </script>
   <!-- <script>
