@@ -240581,79 +240581,83 @@ s===$&&A.b()
 s.p(0,new A.a3a(d))},
 $S:178}
 A.dKB.prototype={
-$2(a,b){return!J.x(a.c,b.c)||!J.x(a.gki(),b.gki())||!J.x(a.d,b.d)||a.as!=b.as||a.at!=b.at||a.cx!=b.cx},
+$2(a,b){return!J.x(a.c,b.c)||!J.x(a.gki(),b.gki())||!J.x(a.d,b.d)||a.as!=b.as||a.at!=b.at||a.cx!=b.cx||a.x!=b.x},
 $S:130}
 A.dKC.prototype={
-$2(a3,a4){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2=null
-if(a4.c==null)return B.S
-s=$.c().gl()
-r=$.c().gl()
-q=$.c().gk()
-p=this.a
-$.A.toString
-o=t.f
-n=A.e("Recurring booking",a2,"lich_chu_ky",A.a([],o),a2)
-m=$.b3()
-l=m.u(A.f(A.d(a3)).dY)
-k=A.f(A.d(a3)).i4
-j=$.c()
-j=Math.min(j.gl(),j.gk())
-i=A.f(A.d(a3)).dY
-l=A.ao(A.bj(k,A.bQ(A.f(A.d(a3)).dY,1),a2,a2,"assets/icons/ic_calendar_2_line.svg",a2,i,16*j,!1,!0,B.ab,a2,new A.dKy(p,a4),1,a2,a2,n,a2,l,a2),1)
+$2(a2,a3){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1=null
+if(a3.c==null)return B.S
+s=a3.as
+r=s==null
+q=r?0:s
+p=a3.cx
+o=p==null
+n=o?0:p
+m=a3.x
+if(m==null)m=0
+l=q-n-m
+m=$.c().gl()
 n=$.c().gl()
+q=$.c().gk()
+k=this.a
 $.A.toString
-j=A.e("Daily booking",a2,"lich_ngay",A.a([],o),a2)
-i=m.u(A.f(A.d(a3)).e8)
-k=A.f(A.d(a3)).i4
-h=$.c()
-h=Math.min(h.gl(),h.gk())
-g=A.f(A.d(a3)).e8
-f=t.p
-i=A.aI(A.a([l,new A.G(12*n,a2,a2,a2),A.ao(A.bj(k,A.bQ(A.f(A.d(a3)).e8,1),a2,a2,"assets/icons/ic_calendar_add_line.svg",a2,g,16*h,!1,!0,B.ab,a2,new A.dKz(p,a4),1,a2,a2,j,a2,i,a2),1)],f),B.k,a2,B.c7,B.j,a2)
-j=t.X
-A.r(a3,B.d,j).toString
-h=A.e("Total hours",a2,"tong_gio",A.a([],o),a2)
-g=a4.at
-n=A.cO(g==null?0:g,!1,"h","")
-l=$.bU()
-k=l.u(A.f(A.d(a3)).ae)
-g=m.u(A.f(A.d(a3)).D)
-e=$.c().gk()
-g=A.ax(a2,!1,!1,!1,!1,A.bm()===B.N,!1,!1,!1,a2,10,a2,a2,new A.C(0,0,0,8*e),a2,a2,a2,a2,h,a2,k,a2,n,a2,g,a2)
-A.r(a3,B.d,j).toString
-n=A.e("Revenue",a2,"tong_tien",A.a([],o),a2)
-k=a4.as
-h=k==null
-e=h?a2:A.aF(k,a2)
-e=A.h(e==null?0:e)
-d=A.b0()
-c=l.u(A.f(A.d(a3)).ae)
-b=m.u(A.f(A.d(a3)).a)
-b=A.a([g,A.ax(a2,!1,!1,!1,!1,A.bm()===B.N,!1,!1,!1,a2,10,a2,a2,B.p,a2,a2,a2,a2,n,a2,c,a2,e+d,a2,b,a2)],f)
-n=a4.cx
-g=n==null
-if((g?0:n)>0){A.r(a3,B.d,j).toString
-e=A.e("Discount",a2,"giam_gia",A.a([],o),a2)
-d=g?a2:A.aF(n,a2)
-d=A.h(d==null?0:d)
-c=A.b0()
-a=l.u(A.f(A.d(a3)).ae)
-a0=m.u(A.f(A.d(a3)).a)
-a1=$.c().gk()
-a0=A.ax(a2,!1,!1,!1,!1,A.bm()===B.N,!1,!1,!1,a2,10,a2,a2,new A.C(0,8*a1,0,0),a2,a2,a2,a2,e,a2,a,a2,d+c,a2,a0,a2)
-A.r(a3,B.d,j).toString
-c=A.e("Need payment",a2,"can_thanh_toan",A.a([],o),a2)
-if(h)k=0
-n=A.aF(k-(g?0:n),a2)
-k=A.b0()
-l=l.u(A.f(A.d(a3)).ae)
-h=m.u(A.f(A.d(a3)).a)
-e=$.c().gk()
-B.c.L(b,A.a([a0,A.ax(a2,!1,!1,!1,!1,A.bm()===B.N,!1,!1,!1,a2,10,a2,a2,new A.C(0,8*e,0,0),a2,a2,a2,a2,c,a2,l,a2,n+k,a2,h,a2)],f))}n=A.ju(a2,a2,b,a2,a2,a2)
-l=$.c().gk()
-k=A.f(A.d(a3))
-A.r(a3,B.d,j).toString
-return A.a3(A.a([new A.at(new A.C(12*s,0,12*r,12*q),i,a2),A.e5(a2,a2,a2,A.a([A.ao(A.a3(A.a([n,new A.G(a2,20*l,a2,a2),A.ck(k.a,a2,8,A.S(A.e("Confirm",a2,"xac_nhan",A.a([],o),a2),a2,a2,a2,a2,a2,m.u(B.y),a2,a2),a2,!1,new A.dKA(p,a3),B.p,a2)],f),B.k,a2,B.i,B.Q,B.m),1)],f),B.i,a2,a2)],f),B.k,a2,B.i,B.j,B.m)},
+j=t.f
+i=A.e("Recurring booking",a1,"lich_chu_ky",A.a([],j),a1)
+h=$.b3()
+g=h.u(A.f(A.d(a2)).dY)
+f=A.f(A.d(a2)).i4
+e=$.c()
+e=Math.min(e.gl(),e.gk())
+d=A.f(A.d(a2)).dY
+g=A.ao(A.bj(f,A.bQ(A.f(A.d(a2)).dY,1),a1,a1,"assets/icons/ic_calendar_2_line.svg",a1,d,16*e,!1,!0,B.ab,a1,new A.dKy(k,a3),1,a1,a1,i,a1,g,a1),1)
+i=$.c().gl()
+$.A.toString
+e=A.e("Daily booking",a1,"lich_ngay",A.a([],j),a1)
+d=h.u(A.f(A.d(a2)).e8)
+f=A.f(A.d(a2)).i4
+c=$.c()
+c=Math.min(c.gl(),c.gk())
+b=A.f(A.d(a2)).e8
+a=t.p
+d=A.aI(A.a([g,new A.G(12*i,a1,a1,a1),A.ao(A.bj(f,A.bQ(A.f(A.d(a2)).e8,1),a1,a1,"assets/icons/ic_calendar_add_line.svg",a1,b,16*c,!1,!0,B.ab,a1,new A.dKz(k,a3),1,a1,a1,e,a1,d,a1),1)],a),B.k,a1,B.c7,B.j,a1)
+e=t.X
+A.r(a2,B.d,e).toString
+c=A.e("Total hours",a1,"tong_gio",A.a([],j),a1)
+b=a3.at
+i=A.cO(b==null?0:b,!1,"h","")
+g=$.bU()
+f=g.u(A.f(A.d(a2)).ae)
+b=h.u(A.f(A.d(a2)).D)
+a0=$.c().gk()
+b=A.ax(a1,!1,!1,!1,!1,A.bm()===B.N,!1,!1,!1,a1,10,a1,a1,new A.C(0,0,0,8*a0),a1,a1,a1,a1,c,a1,f,a1,i,a1,b,a1)
+A.r(a2,B.d,e).toString
+i=A.e("Revenue",a1,"tong_tien",A.a([],j),a1)
+s=r?a1:A.aF(s,a1)
+s=A.h(s==null?0:s)
+r=A.b0()
+f=g.u(A.f(A.d(a2)).ae)
+c=h.u(A.f(A.d(a2)).a)
+c=A.a([b,A.ax(a1,!1,!1,!1,!1,A.bm()===B.N,!1,!1,!1,a1,10,a1,a1,B.p,a1,a1,a1,a1,i,a1,f,a1,s+r,a1,c,a1)],a)
+if((o?0:p)>0){A.r(a2,B.d,e).toString
+s=A.e("Discount",a1,"giam_gia",A.a([],j),a1)
+r=o?a1:A.aF(p,a1)
+r=A.h(r==null?0:r)
+p=A.b0()
+o=g.u(A.f(A.d(a2)).ae)
+i=h.u(A.f(A.d(a2)).a)
+f=$.c().gk()
+i=A.ax(a1,!1,!1,!1,!1,A.bm()===B.N,!1,!1,!1,a1,10,a1,a1,new A.C(0,8*f,0,0),a1,a1,a1,a1,s,a1,o,a1,r+p,a1,i,a1)
+if(l>=0){A.r(a2,B.d,e).toString
+s=A.e("Need payment",a1,"can_thanh_toan",A.a([],j),a1)}else{A.r(a2,B.d,e).toString
+s=A.e("To refund",a1,"tra_khach",A.a([],j),a1)}r=A.aF(Math.abs(l),a1)
+p=A.b0()
+g=g.u(A.f(A.d(a2)).ae)
+o=h.u(A.f(A.d(a2)).a)
+f=$.c().gk()
+B.c.L(c,A.a([i,A.ax(a1,!1,!1,!1,!1,A.bm()===B.N,!1,!1,!1,a1,10,a1,a1,new A.C(0,8*f,0,0),a1,a1,a1,a1,s,a1,g,a1,r+p,a1,o,a1)],a))}s=A.ju(a1,a1,c,a1,a1,a1)
+r=$.c().gk()
+p=A.f(A.d(a2))
+A.r(a2,B.d,e).toString
+return A.a3(A.a([new A.at(new A.C(12*m,0,12*n,12*q),d,a1),A.e5(a1,a1,a1,A.a([A.ao(A.a3(A.a([s,new A.G(a1,20*r,a1,a1),A.ck(p.a,a1,8,A.S(A.e("Confirm",a1,"xac_nhan",A.a([],j),a1),a1,a1,a1,a1,a1,h.u(B.y),a1,a1),a1,!1,new A.dKA(k,a2),B.p,a1)],a),B.k,a1,B.i,B.Q,B.m),1)],a),B.i,a1,a1)],a),B.k,a1,B.i,B.j,B.m)},
 $S:2590}
 A.dKy.prototype={
 $0(){var s,r,q=null,p=this.b,o=p.d
@@ -241499,56 +241503,54 @@ s===$&&A.b()
 s.p(0,new A.a3j(d))},
 $S:178}
 A.dLj.prototype={
-$2(a,b){return a.z!=b.z||a.Q!=b.Q||a.ch!=b.ch},
+$2(a,b){return a.z!=b.z||a.Q!=b.Q||a.ch!=b.ch||a.r!=b.r},
 $S:201}
 A.dLk.prototype={
-$2(a,b){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d=null,c=t.X
-A.r(a,B.d,c).toString
-s=t.f
-r=A.e("Total hours",d,"tong_gio",A.a([],s),d)
-q=b.Q
-q=A.cO(q==null?0:q,!1,"h","")
-p=$.bU()
-o=p.u(A.f(A.d(a)).ae)
-n=$.b3()
-m=n.u(A.f(A.d(a)).D)
-l=$.c().gk()
-m=A.ax(d,!1,!1,!1,!1,A.bm()===B.N,!1,!1,!1,d,10,d,d,new A.C(0,0,0,8*l),d,d,d,d,r,d,o,d,q,d,m,d)
-A.r(a,B.d,c).toString
-q=A.e("Revenue",d,"tong_tien",A.a([],s),d)
-o=b.z
-r=o==null
-l=r?d:A.aF(o,d)
-l=A.h(l==null?0:l)
-k=A.b0()
-j=p.u(A.f(A.d(a)).ae)
-i=n.u(A.f(A.d(a)).D)
-h=t.p
-i=A.a([m,A.ax(d,!1,!1,!1,!1,A.bm()===B.N,!1,!1,!1,d,10,d,d,B.p,d,d,d,d,q,d,j,d,l+k,d,i,d)],h)
-q=b.ch
-m=q==null
-if((m?0:q)>0){A.r(a,B.d,c).toString
-l=A.e("Discount",d,"giam_gia",A.a([],s),d)
-k=m?d:A.aF(q,d)
+$2(a,b){var s,r,q,p,o,n,m,l=null,k=b.z,j=k==null,i=j?0:k,h=b.ch,g=h==null,f=g?0:h,e=b.r
+if(e==null)e=0
+s=i-f-e
+e=t.X
+A.r(a,B.d,e).toString
+f=t.f
+i=A.e("Total hours",l,"tong_gio",A.a([],f),l)
+r=b.Q
+r=A.cO(r==null?0:r,!1,"h","")
+q=$.bU()
+p=q.u(A.f(A.d(a)).ae)
+o=$.b3()
+n=o.u(A.f(A.d(a)).D)
+m=$.c().gk()
+n=A.ax(l,!1,!1,!1,!1,A.bm()===B.N,!1,!1,!1,l,10,l,l,new A.C(0,0,0,8*m),l,l,l,l,i,l,p,l,r,l,n,l)
+A.r(a,B.d,e).toString
+r=A.e("Revenue",l,"tong_tien",A.a([],f),l)
+k=j?l:A.aF(k,l)
 k=A.h(k==null?0:k)
 j=A.b0()
-g=p.u(A.f(A.d(a)).ae)
-f=n.u(A.f(A.d(a)).a)
-e=$.c().gk()
-f=A.ax(d,!1,!1,!1,!1,A.bm()===B.N,!1,!1,!1,d,10,d,d,new A.C(0,8*e,0,0),d,d,d,d,l,d,g,d,k+j,d,f,d)
-A.r(a,B.d,c).toString
-j=A.e("Need payment",d,"can_thanh_toan",A.a([],s),d)
-r=r?0:o
-r=A.aF(r-(m?0:q),d)
-q=A.b0()
-p=p.u(A.f(A.d(a)).ae)
-o=n.u(A.f(A.d(a)).a)
-l=$.c().gk()
-B.c.L(i,A.a([f,A.ax(d,!1,!1,!1,!1,A.bm()===B.N,!1,!1,!1,d,10,d,d,new A.C(0,8*l,0,0),d,d,d,d,j,d,p,d,r+q,d,o,d)],h))}r=A.ju(d,d,i,d,d,d)
-q=$.c().gk()
-p=A.f(A.d(a))
-A.r(a,B.d,c).toString
-return A.a3(A.a([r,new A.G(d,20*q,d,d),A.ck(p.a,d,8,A.S(A.e("Confirm",d,"xac_nhan",A.a([],s),d),d,d,d,d,d,n.u(A.f(A.d(a)).p4),d,d),d,!1,new A.dLi(this.a),B.p,d)],h),B.k,d,B.i,B.j,B.m)},
+i=q.u(A.f(A.d(a)).ae)
+p=o.u(A.f(A.d(a)).D)
+m=t.p
+p=A.a([n,A.ax(l,!1,!1,!1,!1,A.bm()===B.N,!1,!1,!1,l,10,l,l,B.p,l,l,l,l,r,l,i,l,k+j,l,p,l)],m)
+if((g?0:h)>0){A.r(a,B.d,e).toString
+k=A.e("Discount",l,"giam_gia",A.a([],f),l)
+j=g?l:A.aF(h,l)
+j=A.h(j==null?0:j)
+i=A.b0()
+h=q.u(A.f(A.d(a)).ae)
+g=o.u(A.f(A.d(a)).a)
+r=$.c().gk()
+g=A.ax(l,!1,!1,!1,!1,A.bm()===B.N,!1,!1,!1,l,10,l,l,new A.C(0,8*r,0,0),l,l,l,l,k,l,h,l,j+i,l,g,l)
+if(s>=0){A.r(a,B.d,e).toString
+k=A.e("Need payment",l,"can_thanh_toan",A.a([],f),l)}else{A.r(a,B.d,e).toString
+k=A.e("To refund",l,"tra_khach",A.a([],f),l)}j=A.aF(Math.abs(s),l)
+i=A.b0()
+q=q.u(A.f(A.d(a)).ae)
+h=o.u(A.f(A.d(a)).a)
+r=$.c().gk()
+B.c.L(p,A.a([g,A.ax(l,!1,!1,!1,!1,A.bm()===B.N,!1,!1,!1,l,10,l,l,new A.C(0,8*r,0,0),l,l,l,l,k,l,q,l,j+i,l,h,l)],m))}k=A.ju(l,l,p,l,l,l)
+j=$.c().gk()
+i=A.f(A.d(a))
+A.r(a,B.d,e).toString
+return A.a3(A.a([k,new A.G(l,20*j,l,l),A.ck(i.a,l,8,A.S(A.e("Confirm",l,"xac_nhan",A.a([],f),l),l,l,l,l,l,o.u(A.f(A.d(a)).p4),l,l),l,!1,new A.dLi(this.a),B.p,l)],m),B.k,l,B.i,B.j,B.m)},
 $S:757}
 A.dLi.prototype={
 $0(){var s,r,q,p=this.a
